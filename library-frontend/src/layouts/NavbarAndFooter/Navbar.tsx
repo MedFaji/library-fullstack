@@ -5,13 +5,13 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark main-color py-3">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          {/* <img
-            src="../../public/logo512.png"
-            alt="" 
+          <img
+            src={require("../../Images/logo512.png")}
+            alt=""
             width="30"
             height="24"
-            className="d-inline-block align-text-top mr-1"
-          /> */}
+            className="d-inline-block align-text-top mx-2"
+          />
           Bootstrap
         </a>
         <button
