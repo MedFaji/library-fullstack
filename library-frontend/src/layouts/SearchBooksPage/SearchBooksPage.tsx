@@ -3,6 +3,7 @@ import SpinnerLoading from "../Utils/SpinnerLoading";
 import BookModel from "../../models/BookModel";
 import SearchBook from "./SearchBook";
 import Pagination from "../Utils/Pagination";
+import { Link } from "react-router-dom";
 
 export const SearchBooksPage = () => {
   const [books, setBooks] = useState<BookModel[]>([]);
@@ -125,7 +126,10 @@ export const SearchBooksPage = () => {
       : totalAmountOfBooks;
   const indexOfFirstBook: number = indexOfLastBook - booksPerPage;
 
+  //Paginate function
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+
   return (
     <div>
       <div className="container">
@@ -216,12 +220,12 @@ export const SearchBooksPage = () => {
           ) : (
             <div className="m-5">
               <h3>Can't find what you are looking for ?</h3>
-              <a
-                href="button"
+              <Link
+                to={'/home'}
                 className="btn main-color btm-md px-4 me-md-2 fw-bold text-white"
               >
                 Library Services
-              </a>
+              </Link>
             </div>
           )}
         </div>
