@@ -12,7 +12,7 @@ const Navbar = () => {
             height="24"
             className="d-inline-block align-text-top mx-2"
           />
-          Bootstrap
+          myLibrary
         </a>
         <button
           className="navbar-toggler"
