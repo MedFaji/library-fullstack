@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReturnBook from "./ReturnBook";
 import BookModel from "../../../models/BookModel";
+import SpinnerLoading from "../../Utils/SpinnerLoading";
 
 const Carousel = () => {
   const [books, setBooks] = useState<BookModel[]>([]);
@@ -13,9 +14,11 @@ const Carousel = () => {
       const response = await fetch(baseUrl + "?page=0&size=9");
       const responseJson = await response.json();
       const responseData: BookModel[] = await responseJson._embedded.books;
+
       if (!response.ok) {
         throw new Error("Something went wrong");
       }
+
       const loadedBooks: BookModel[] = [];
 
       for (const key in responseData) {
@@ -30,10 +33,8 @@ const Carousel = () => {
           img: responseData[key].img,
         });
       }
-
       setBooks(loadedBooks);
       setLoading(false);
-      console.log(loadedBooks);
     };
 
     fetchBooks().catch((err: any) => {
@@ -45,7 +46,7 @@ const Carousel = () => {
   if (loading) {
     return (
       <div className="container m-5">
-        <p>Loading...</p>
+        <SpinnerLoading />
       </div>
     );
   }
@@ -119,7 +120,9 @@ const Carousel = () => {
       {/* Mobile */}
       <div className="d-lg-none mt-3">
         <div className="row d-flex justify-content-center align-items-center">
-          <ReturnBook book={books[7]} key={books[7].id} />
+          {books.slice(5, 6).map((book) => (
+            <ReturnBook book={book} key={book.id} />
+          ))}
         </div>
       </div>
       <div className="homepage-carousel-title mt-3">
